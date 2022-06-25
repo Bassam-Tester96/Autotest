@@ -28,16 +28,16 @@ public class D01_registerStepDef {
     @When("user select gender type")
     public void gender()
     {
-        p01reg.genderType("male");
+        p01reg.genderType("male").click();
     }
 
 
-    @And("user enter first name {string} and last name {string}")
-    //@And("^user enter first name \"(.)\" and last name \"(.)\"")
-    public void first_last_name()
+    //@And("user enter first name {string} and last name {string}")
+    @And("^user enter first name \"(.*)\" and last name \"(.*)\"$")
+    public void first_last_name(String FirstName , String LastName)
     {
-        p01reg.firstNameTxt().sendKeys();
-        p01reg.lastNameTxt().sendKeys();
+        p01reg.firstNameTxt().sendKeys(FirstName);
+        p01reg.lastNameTxt().sendKeys(LastName);
     }
 
     @And("user enter date of birth")
@@ -48,16 +48,16 @@ public class D01_registerStepDef {
         p01reg.birthYear().sendKeys("1998");
     }
 
-    @And("user enter email {string} field")
+    @And("^user enter email \"(.*)\" field$")
     public void personal_details(String email)
     {
-        p01reg.EmailTxt(email);
+        p01reg.EmailTxt(email).sendKeys(email);
     }
 
     @And("user fills Password fields {string} {string}")
     public void your_password(String pass, String confirmpass) throws InterruptedException {
-        p01reg.passwordTxt(pass);
-        p01reg.confirmpassTxt(confirmpass);
+        p01reg.passwordTxt(pass).sendKeys(pass);
+        p01reg.confirmpassTxt(confirmpass).sendKeys(pass);
         Thread.sleep(3000);
     }
 
@@ -69,16 +69,21 @@ public class D01_registerStepDef {
 
     @Then("success message is displayed")
     public void successMessageIsDisplayed() throws InterruptedException {
-//        String ActualTitle = Hooks.driver.getTitle();
-//        String ExpectedTitle = "Your registration completed";
-//        Assert.assertEquals(ActualTitle, ExpectedTitle);
-        Assert.assertTrue(true, "Your registration completed");
-//        SoftAssert aa = new SoftAssert();
-//        String ActualTitle =
-////        String ExpectedTitle =
-//        aa.assertEquals ()
-//        assertTrue(actualColor.equals(“#0045d0”));
-        Thread.sleep(3000);
+        SoftAssert sof = new SoftAssert();
+        // First Assert Message
+        String actualResult = p01reg.result().getText();
+        String expectedResult = "Your registration completed";
+        sof.assertEquals(actualResult.contains(expectedResult), true);
+        sof.assertTrue(actualResult.contains(expectedResult));
+
+        // Second Assert for color !Need Help!
+        String actualResult2 = p01reg.result().getCssValue("background-color");
+        String expectedResult2 = "(76, 177, 124, 1)";
+        sof.assertEquals(actualResult2.contains(expectedResult2), true);
+        sof.assertTrue(actualResult2.contains(expectedResult2));
+
+        //Assert All
+        sof.assertAll();
     }
 
 }

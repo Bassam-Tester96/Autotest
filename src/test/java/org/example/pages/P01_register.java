@@ -3,6 +3,7 @@ package org.example.pages;
 import org.example.stepDefinitions.Hooks;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
@@ -13,7 +14,6 @@ public class P01_register {
         return  Hooks.driver.findElement(By.cssSelector("a[class=\"ico-register\"]"));
 
     }
-
     public WebElement genderType(String type)
     {
         WebElement element = null;
@@ -36,7 +36,7 @@ public class P01_register {
 
     public WebElement lastNameTxt()
     {
-        return  Hooks.driver.findElement(By.id("lastname"));
+        return  Hooks.driver.findElement(By.id("LastName"));
     }
 
     public WebElement birthDay()
@@ -90,6 +90,9 @@ public class P01_register {
 
     public WebElement result()
     {
+        // Note : m7tag a3rf l color 3shan a3mmlo assert fl step definition
+        //Hooks.driver.findElement(By.cssSelector("div[class=\"result\"]")).getCssValue(Color,76, 177, 124, 1);
         return  Hooks.driver.findElement(By.cssSelector("div[class=\"result\"]"));
+
     }
 }

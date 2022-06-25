@@ -1,20 +1,18 @@
 @smoke
 Feature:  User can search for any product at system
   Scenario Outline 1: User can search by product name <pname>
-    Given User navigate to Homepage
-    When user click at search field
-    And User search with name of product "pname"
+    Given user click at search field
+    When User search with name of product "pname"
     Then user could find relative products
     Examples:
-      | pname | 
+      | pname |
       | book |
       | laptop |
       | nike |
 
   Scenario Outline 2: : User can search by SKU <sku>
-    Given User navigate to Homepage
-    When user click at search field
-    And User search with SKU of product "sku"
+    Given user click at search field
+    When User search with SKU of product "sku"
     Then user could find relative products
 
     Examples:

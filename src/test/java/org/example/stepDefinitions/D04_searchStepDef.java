@@ -4,52 +4,49 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.example.pages.P03_homePage;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 public class D04_searchStepDef {
 
-
-    @Given("User navigate to Homepage")
-    public void navigate()
-    {
-        Hooks.driver.navigate().to("https://demo.nopcommerce.com/");
-    }
-
-    @When("user click at search field")
+    P03_homePage p04search = new P03_homePage();
+    @Given("user click at search field")
     public void click_on_search()
     {
-        Hooks.driver.findElement(By.id("small-searchterms")).click();
+        p04search.Search().click();
     }
 
-    @And("User search with name of product {string}")
-    public void userSearchWithNameOfProduct(String arg0)
+    @When("User search with name of product \"(.*)\"$")
+    public void userSearchWithNameOfProduct(String pname)
     {
-        Hooks.driver.findElement(By.id("small-searchterms")).sendKeys("book");
-        Hooks.driver.findElement(By.cssSelector("button[class=\"button-1 search-box-button\"]")).click();
+        p04search.Search().sendKeys(pname);
+        p04search.SearchBtn().click();
     }
-    @And("User search with SKU of product {string}")
-    public void search_for_product_sku(String sku) throws InterruptedException {
-        Hooks.driver.findElement(By.id("small-searchterms")).sendKeys("book");
-        Thread.sleep(2000);
-        Hooks.driver.findElement(By.cssSelector("button[class=\"button-1 search-box-button\"]")).click();
-        Thread.sleep(3000);
+    @When("User search with SKU of product \"(.*)\"$")
+    public void search_for_product_sku(String sku)  {
+        p04search.Search().sendKeys(sku);
+        p04search.SearchBtn().click();
     }
 
 
     @Then("user could find relative products")
     public void get_data()
     {
-        int count = Hooks.driver.findElements(By.cssSelector("h2[Class=\"product-title\"] a")).size();
-        //ArrayList <String> productlist =new ArrayList <String> ();
-        Assert.assertTrue(count>0);
-
+        SoftAssert sof = new SoftAssert();
+        int count = p04search.checkProduct().size();
+        // Assert Result as I don't know as it's true or no
+        sof.assertTrue(count>0);
         for (int i =0 ; i< count ; i++)
         {
-            System.out.println(Hooks.driver.findElements(By.cssSelector("h2[Class=\"product-title\"] a")).get(i).getText());
-            //productlist.add(driver.findElements(By.cssSelector("h2[Class=\"product-title\"] a")).get(i).getText());
-            Assert.assertTrue(Hooks.driver.findElements(By.cssSelector("h2[Class=\"product-title\"] a")).get(i).getText().toLowerCase().contains("book"));
+            System.out.println(p04search.checkProduct().get(i).getText());
+            sof.assertTrue(p04search.checkProduct().get(i).getText().toLowerCase().contains("book"));
         }
+        // I want to make other one for SKU assert en hya btgyeeb product wa7ed bs w ad5ol gwah ashoof l sku sa7 !!!
+        // Assert url
+        sof.assertTrue(Hooks.driver.getCurrentUrl().contains("nopCommerce demo store. Search"));
+        sof.assertAll();
     }
 
 
