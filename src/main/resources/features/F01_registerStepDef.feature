@@ -10,7 +10,3 @@ Feature: User should be able to register to system successfully
     And user fills Password fields "P@ssw0rd" "P@ssw0rd"
     And user clicks on register button
     Then success message is displayed
-
-#    Examples:
-#      | firstname  | lastname | email              | pass     | confirmpass |
-#      | automation | tester   | testff@example.com | P@ssw0rd | P@ssw0rd    |

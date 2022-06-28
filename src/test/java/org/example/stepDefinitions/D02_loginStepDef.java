@@ -66,7 +66,7 @@ public class D02_loginStepDef {
         // Cannot do assertion for color I add tutor command but not working!Need Help!
         // Second Assertion
         String actualResult2 = p02login.result().getCssValue("Color");
-        actualResult2.Color.fromString("rgba(228, 67, 75, 1)").asHex();
+        actualResult2=Color.fromString("rgba(228, 67, 75, 1)").asHex();
         String expectedResult2 = "#e4434b";
         sof2.assertEquals(actualResult2.contains(expectedResult2), true);
         sof2.assertTrue(actualResult2.contains(expectedResult2));

@@ -1,3 +1,4 @@
+@smoke
 Feature: User open slider and check redirect after click
   Scenario: first slider is clickable on home page
     Given User Click at first slider

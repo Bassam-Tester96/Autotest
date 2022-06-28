@@ -17,13 +17,11 @@ public class D07_followUsStepDef {
         po7Follow.open_Facebook().click();
     }
 
-    @Then("^\"([^\"]*)\" is opened in new tab$")
-    public void open_new_tab () throws InterruptedException {
+    @Then("^\"([^\"]*)\" is opened in new tab1$")
+    public void open_new_tab1 () throws InterruptedException {
         Thread.sleep(2000);
-        ArrayList Tabs = new ArrayList<>(Hooks.driver.getWindowHandles());
-
+        ArrayList<String> Tabs = new ArrayList<>(Hooks.driver.getWindowHandles());
         Hooks.driver.switchTo().window(Tabs.get(1));
-
         System.out.println(Hooks.driver.getCurrentUrl());
         System.out.println(Hooks.driver.getTitle());
         Assert.assertEquals(Hooks.driver.getCurrentUrl(),"https://www.facebook.com/nopCommerce");
@@ -40,13 +38,11 @@ public class D07_followUsStepDef {
         po7Follow.open_Twitter().click();
     }
 
-    @Then("^\"([^\"]*)\" is opened in new tab$")
-    public void open_new_tab () throws InterruptedException {
+    @Then("^\"([^\"]*)\" is opened in new tab2$")
+    public void open_new_tab2 () throws InterruptedException {
         Thread.sleep(2000);
-        ArrayList Tabs = new ArrayList<>(Hooks.driver.getWindowHandles());
-
+        ArrayList<String> Tabs = new ArrayList<>(Hooks.driver.getWindowHandles());
         Hooks.driver.switchTo().window(Tabs.get(1));
-
         System.out.println(Hooks.driver.getCurrentUrl());
         System.out.println(Hooks.driver.getTitle());
         Assert.assertEquals(Hooks.driver.getCurrentUrl(),"https://twitter.com/nopCommerce");
@@ -63,13 +59,11 @@ public class D07_followUsStepDef {
         po7Follow.open_rss().click();
     }
 
-    @Then("^\"([^\"]*)\" is opened in new tab$")
-    public void open_new_tab () throws InterruptedException {
+    @Then("^\"([^\"]*)\" is opened in new tab3$")
+    public void open_new_tab3 () throws InterruptedException {
         Thread.sleep(2000);
-        ArrayList Tabs = new ArrayList<>(Hooks.driver.getWindowHandles());
-
+        ArrayList<String> Tabs = new ArrayList<>(Hooks.driver.getWindowHandles());
         Hooks.driver.switchTo().window(Tabs.get(1));
-
         System.out.println(Hooks.driver.getCurrentUrl());
         System.out.println(Hooks.driver.getTitle());
         Assert.assertEquals(Hooks.driver.getCurrentUrl(),"https://demo.nopcommerce.com/new-online-store-is-open");
@@ -86,13 +80,11 @@ public class D07_followUsStepDef {
         po7Follow.open_Youtube().click();
     }
 
-    @Then("^\"([^\"]*)\" is opened in new tab$")
-    public void open_new_tab () throws InterruptedException {
+    @Then("^\"([^\"]*)\" is opened in new tab4$")
+    public void open_new_tab4() throws InterruptedException {
         Thread.sleep(2000);
-        ArrayList Tabs = new ArrayList<>(Hooks.driver.getWindowHandles());
-
+        ArrayList<String> Tabs = new ArrayList<>(Hooks.driver.getWindowHandles());
         Hooks.driver.switchTo().window(Tabs.get(1));
-
         System.out.println(Hooks.driver.getCurrentUrl());
         System.out.println(Hooks.driver.getTitle());
         Assert.assertEquals(Hooks.driver.getCurrentUrl(),"https://www.youtube.com/user/nopCommerce");

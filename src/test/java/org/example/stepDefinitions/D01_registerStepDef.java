@@ -68,16 +68,16 @@ public class D01_registerStepDef {
     }
 
     @Then("success message is displayed")
-    public void successMessageIsDisplayed() throws InterruptedException {
+    public void successMessageIsDisplayed() {
         SoftAssert sof = new SoftAssert();
         // First Assert Message
         String actualResult = p01reg.result().getText();
         String expectedResult = "Your registration completed";
-        sof.assertEquals(actualResult.contains(expectedResult), true);
+        //sof.assertEquals(actualResult.contains(expectedResult), true);
         sof.assertTrue(actualResult.contains(expectedResult));
 
         // Second Assert for color !Need Help!
-        String actualResult2 = p01reg.result().getCssValue("background-color");
+        String actualResult2 = p01reg.result().getCssValue("color");
         String expectedResult2 = "(76, 177, 124, 1)";
         sof.assertEquals(actualResult2.contains(expectedResult2), true);
         sof.assertTrue(actualResult2.contains(expectedResult2));
